@@ -24,10 +24,8 @@
             </p>
         <% } else { %>
             <% if (!index && post.toc) { %>
-                <div id="toc" class="toc-article">
-                <strong class="toc-title"><%= __('article.catalogue') %></strong>
-                    <%- toc(post.content) %>
-                </div>
+                    <% post.content = post.content.replace(/<!--(\s*)[t|T][o|O][c|C](\s*)-->/, 
+                        renderToc(toc(post.content, {list_number: true}), __('article.catalogue'))) %>
             <% } %>
             <%- post.content %>
         <% } %>
